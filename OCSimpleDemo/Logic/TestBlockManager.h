@@ -16,10 +16,11 @@ typedef void(^TestBlock)(void);
 @property (nonatomic, strong) TestBlock strongBlock;
 @property (nonatomic, weak) TestBlock weakBlock;
 
+- (void)simpleBlock:(TestBlock)block;
+
 - (void)testWithCopyBlock:(TestBlock)block;
 - (void)testWithStrongBlock:(TestBlock)block;
 - (void)testWithWeakBlock:(TestBlock)block;
-- (void)testWithWeakBlockAutoreleasePool:(TestBlock)block;
 - (void)testWithWeakBlockThread:(TestBlock)block;
 
 @end

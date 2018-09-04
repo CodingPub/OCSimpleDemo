@@ -8,22 +8,46 @@
 
 #import "ViewController.h"
 #import "TestBlockViewController.h"
+#import "TestCeanupViewController.h"
 
-@interface ViewController()
+@interface ViewController() {
+    
+}
+
+@property (nonatomic, assign, getter=isOn) BOOL on;
 
 @end
 
 @implementation ViewController
 
+@synthesize on = _on;
+
+- (BOOL)isOn {
+    return _on;
+}
+
+- (void)setOn:(BOOL)on {
+    _on = on;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.on = YES;
+    NSLog(@"%@", @(self.isOn));
+    NSLog(@"%@", @(self.on));
+    NSLog(@"%@", @([self isOn]));
+    
     typeof(self) __weak weakSelf = self;
     NSUInteger section = 0;
     [self addSection:@"测试"];
-    [self section:section addCell:@"TestBlock" action:^{
+    [self section:section addCell:@"Test Block" action:^{
         TestBlockViewController *ctrl = [[TestBlockViewController alloc] init];
+        [weakSelf.navigationController pushViewController:ctrl animated:YES];
+    }];
+    [self section:section addCell:@"Test Ceanup" action:^{
+        TestCeanupViewController *ctrl = [[TestCeanupViewController alloc] init];
         [weakSelf.navigationController pushViewController:ctrl animated:YES];
     }];
     
@@ -38,7 +62,7 @@
         
 #if 1
 #warning 快速测试
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
         if (indexPath.section < [self numberOfSectionsInTableView:self.tableView]
             && indexPath.row < [self tableView:self.tableView numberOfRowsInSection:indexPath.section]) {
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];

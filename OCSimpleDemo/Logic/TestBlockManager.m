@@ -14,6 +14,14 @@
     NSLog(@"TestBlockManager dealloc");
 }
 
+- (void)simpleBlock:(TestBlock)block {
+    NSLog(@"simpleBlock %@", block);
+    
+    if (block) {
+        block();
+    }
+}
+
 - (void)testWithCopyBlock:(TestBlock)block {
     self.copyBlock = block;
     if (self.copyBlock) {
@@ -22,7 +30,9 @@
 }
 
 - (void)testWithStrongBlock:(TestBlock)block {
+    NSLog(@"testWithStrongBlock %@", block);
     self.strongBlock = block;
+    NSLog(@"testWithStrongBlock %@", self.strongBlock);
     
     if (self.strongBlock) {
         self.strongBlock();
@@ -37,29 +47,15 @@
     }
 }
 
-- (void)testWithWeakBlockAutoreleasePool:(TestBlock)block {
-    @autoreleasepool {
-        self.weakBlock = block;
-    }
-    
-    if (self.weakBlock) {
-#warning 为何此处能执行
-        self.weakBlock();
-    }
-}
-
 - (void)testWithWeakBlockThread:(TestBlock)block {
     self.weakBlock = block;
+     NSLog(@"%@", block);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-#warning 为何此处会崩溃，weakBlock 野指针
-            if (self.weakBlock) {
-                self.weakBlock();
-            }
-        });
+        if (self.weakBlock) {
+            self.weakBlock();
+        }
     });
-    
 }
 
 

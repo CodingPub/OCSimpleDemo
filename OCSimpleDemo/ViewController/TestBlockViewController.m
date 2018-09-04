@@ -25,22 +25,7 @@
     
     typeof(self) __weak weakSelf = self;
     
-    NSUInteger section = 0;
-    [self addSection:@"Block Property"];
-    [self section:section addCell:@"copy property" action:^{
-        [weakSelf testCopyBlockProperty];
-    }];
-    [self section:section addCell:@"strong property" action:^{
-        [weakSelf testStrongBlockProperty];
-    }];
-    [self section:section addCell:@"block property" action:^{
-        [weakSelf testWeakBlockProperty];
-    }];
-    [self section:section addCell:@"block property with autoreleasepool" action:^{
-        [weakSelf testWeakBlockPropertyWithAutoreloeasePool];
-    }];
-    
-    section = 1;
+    NSInteger section = 0;
     [self addSection:@"Block Param"];
     [self section:section addCell:@"copy param" action:^{
         [weakSelf testCopyBlockParam];
@@ -51,58 +36,56 @@
     [self section:section addCell:@"weak param" action:^{
         [weakSelf testWeakBlockParam];
     }];
-    [self section:section addCell:@"weak param with autoreleasepool" action:^{
-        [weakSelf testWeakBlockParamAutoReleasePool];
-    }];
     [self section:section addCell:@"weak param with thread" action:^{
         [weakSelf testWeakBlockParamThread];
+    }];
+    
+    
+    [self section:section addCell:@"test block" action:^{
+        [weakSelf test];
+    }];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+#if 0
+#warning 快速测试
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+        if (indexPath.section < [self numberOfSectionsInTableView:self.tableView]
+            && indexPath.row < [self tableView:self.tableView numberOfRowsInSection:indexPath.section]) {
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+        }
+#endif
+    });
+}
+
+- (void)testBlock:(TestBlock)block {
+    NSLog(@"testBlock %@", block);
+    
+    if (block) {
+        block();
+    }
+}
+
+- (void)test {
+    [self testBlock:^{
+        NSLog(@"call test block");
+    }];
+    
+    [self testBlock:^{
+        NSLog(@"call test block %@", self);
     }];
 }
 
 - (void)dealloc {
     NSLog(@"TestBlockViewController dealloc");
-}
-
-- (void)testCopyBlockProperty {
-    self.manager.copyBlock  = ^{
-        NSLog(@"exec copy block %@", self);
-    };
-    
-    if (self.manager.copyBlock) {
-        self.manager.copyBlock();
-    }
-}
-
-- (void)testStrongBlockProperty {
-    self.manager.strongBlock  = ^{
-        NSLog(@"exec strong block %@", self);
-    };
-    
-    if (self.manager.strongBlock) {
-        self.manager.strongBlock();
-    }
-}
-
-- (void)testWeakBlockProperty {
-    self.manager.weakBlock = ^{
-        NSLog(@"exec weak block %@", self);
-    };
-    
-    if (self.manager.weakBlock) {
-        self.manager.weakBlock();
-    }
-}
-
-- (void)testWeakBlockPropertyWithAutoreloeasePool {
-    @autoreleasepool {
-        self.manager.weakBlock = ^{
-            NSLog(@"exec weak block %@", self);
-        };
-    }
-    
-    if (self.manager.weakBlock) {
-        self.manager.weakBlock();
-    }
 }
 
 - (void)testCopyBlockParam {
@@ -123,19 +106,7 @@
     }];
 }
 
-- (void)testWeakBlockParamAutoReleasePool {
-    @autoreleasepool {
-        [self.manager testWithWeakBlockAutoreleasePool:^{
-            NSLog(@"exec weak block with autoreleasepool %@", self);
-        }];
-    }
-    
-    if (self.manager.weakBlock) {
-        self.manager.weakBlock();
-    }
-}
-
-- (void)testWeakBlockParamThread {
+- (void)testWeakBlockParamThread {    
     [self.manager testWithWeakBlockThread:^{
         NSLog(@"exec weak block with thread change %@", self);
     }];
