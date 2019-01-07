@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "TestBlockViewController.h"
 #import "TestCeanupViewController.h"
+#import "TestCollectionViewController.h"
 
 @interface ViewController() {
     
@@ -50,6 +51,10 @@
         TestCeanupViewController *ctrl = [[TestCeanupViewController alloc] init];
         [weakSelf.navigationController pushViewController:ctrl animated:YES];
     }];
+    [self section:section addCell:@"UICollectionView" action:^{
+        TestCollectionViewController *ctrl = [[TestCollectionViewController alloc] init];
+        [weakSelf.navigationController pushViewController:ctrl animated:YES];
+    }];
     
 }
 
@@ -62,7 +67,7 @@
         
 #if 1
 #warning 快速测试
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
         if (indexPath.section < [self numberOfSectionsInTableView:self.tableView]
             && indexPath.row < [self tableView:self.tableView numberOfRowsInSection:indexPath.section]) {
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];

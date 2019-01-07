@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0842FB77461417D0E0DD32CE /* libPods-OCSimpleDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D661C1142D709DC2F7F2956A /* libPods-OCSimpleDemo.a */; };
+		1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3A721E38CD300582357 /* TestCollectionViewController.m */; };
+		1762D3AC21E38D1100582357 /* TestSimpleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3AB21E38D1100582357 /* TestSimpleCollectionViewCell.m */; };
+		1762D3B021E38FA400582357 /* SimpleHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3AF21E38FA400582357 /* SimpleHeaderCollectionReusableView.m */; };
+		1762D3B321E3A7E600582357 /* SectionBackgorundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3B221E3A7E600582357 /* SectionBackgorundView.m */; };
+		1762D3B621E3A87100582357 /* TestCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3B521E3A87100582357 /* TestCollectionViewFlowLayout.m */; };
 		17781A0E21253887009289FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A0D21253887009289FE /* AppDelegate.m */; };
 		17781A1121253887009289FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A1021253887009289FE /* ViewController.m */; };
 		17781A1421253887009289FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17781A1221253887009289FE /* Main.storyboard */; };
@@ -21,6 +26,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1762D3A621E38CD300582357 /* TestCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
+		1762D3A721E38CD300582357 /* TestCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
+		1762D3AA21E38D1100582357 /* TestSimpleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSimpleCollectionViewCell.h; sourceTree = "<group>"; };
+		1762D3AB21E38D1100582357 /* TestSimpleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSimpleCollectionViewCell.m; sourceTree = "<group>"; };
+		1762D3AE21E38FA400582357 /* SimpleHeaderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		1762D3AF21E38FA400582357 /* SimpleHeaderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		1762D3B121E3A7E600582357 /* SectionBackgorundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionBackgorundView.h; sourceTree = "<group>"; };
+		1762D3B221E3A7E600582357 /* SectionBackgorundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionBackgorundView.m; sourceTree = "<group>"; };
+		1762D3B421E3A87100582357 /* TestCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		1762D3B521E3A87100582357 /* TestCollectionViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		17781A0921253887009289FE /* OCSimpleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCSimpleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17781A0C21253887009289FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		17781A0D21253887009289FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,6 +71,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1762D3A921E38CF600582357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1762D3AD21E38F6E00582357 /* CollectionView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1762D3AD21E38F6E00582357 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1762D3AA21E38D1100582357 /* TestSimpleCollectionViewCell.h */,
+				1762D3AB21E38D1100582357 /* TestSimpleCollectionViewCell.m */,
+				1762D3AE21E38FA400582357 /* SimpleHeaderCollectionReusableView.h */,
+				1762D3AF21E38FA400582357 /* SimpleHeaderCollectionReusableView.m */,
+				1762D3B121E3A7E600582357 /* SectionBackgorundView.h */,
+				1762D3B221E3A7E600582357 /* SectionBackgorundView.m */,
+				1762D3B421E3A87100582357 /* TestCollectionViewFlowLayout.h */,
+				1762D3B521E3A87100582357 /* TestCollectionViewFlowLayout.m */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		17781A0021253887009289FE = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +118,7 @@
 				17781A0C21253887009289FE /* AppDelegate.h */,
 				17781A0D21253887009289FE /* AppDelegate.m */,
 				17781A2221253939009289FE /* ViewController */,
+				1762D3A921E38CF600582357 /* View */,
 				17781A2A21254617009289FE /* Logic */,
 				17781A1221253887009289FE /* Main.storyboard */,
 				17781A1521253889009289FE /* Assets.xcassets */,
@@ -100,6 +139,8 @@
 				17781A2821254573009289FE /* TestBlockViewController.m */,
 				17FDE0F6213E7C3E00FAE5F9 /* TestCeanupViewController.h */,
 				17FDE0F7213E7C3F00FAE5F9 /* TestCeanupViewController.m */,
+				1762D3A621E38CD300582357 /* TestCollectionViewController.h */,
+				1762D3A721E38CD300582357 /* TestCollectionViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -232,11 +273,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				17781A1121253887009289FE /* ViewController.m in Sources */,
+				1762D3AC21E38D1100582357 /* TestSimpleCollectionViewCell.m in Sources */,
 				17781A1C21253889009289FE /* main.m in Sources */,
+				1762D3B321E3A7E600582357 /* SectionBackgorundView.m in Sources */,
 				17781A262125397F009289FE /* BaseTestTableViewController.m in Sources */,
 				17781A0E21253887009289FE /* AppDelegate.m in Sources */,
+				1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */,
+				1762D3B021E38FA400582357 /* SimpleHeaderCollectionReusableView.m in Sources */,
 				17781A2921254573009289FE /* TestBlockViewController.m in Sources */,
 				17781A2D21254634009289FE /* TestBlockManager.m in Sources */,
+				1762D3B621E3A87100582357 /* TestCollectionViewFlowLayout.m in Sources */,
 				17FDE0F8213E7C3F00FAE5F9 /* TestCeanupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TEXZU2MESD;
 				INFOPLIST_FILE = OCSimpleDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,6 +446,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TEXZU2MESD;
 				INFOPLIST_FILE = OCSimpleDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
