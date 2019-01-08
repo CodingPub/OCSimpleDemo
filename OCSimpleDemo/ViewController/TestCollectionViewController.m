@@ -12,6 +12,7 @@
 #import "TestCollectionViewFlowLayout.h"
 #import "SectionBackgorundView.h"
 #import <Masonry/Masonry.h>
+#import "UICollectionView+IGGAutolayoutCell.h"
 
 @interface TestCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -58,7 +59,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 16;
+    return 30;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,6 +68,11 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [collectionView igg_heightForCellWithIdentifier:TestSimpleCollectionViewCell.reuseIdentifier indexPath:indexPath maxSize:TestSimpleCollectionViewCell.maxCellSize configuration:^(TestSimpleCollectionViewCell *cell) {
+        
+    }];
+}
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -77,10 +83,6 @@
         UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
         return footer;
     }
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return CGSizeMake(50, 70);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

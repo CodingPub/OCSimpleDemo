@@ -12,4 +12,8 @@
 
 + (NSString *)reuseIdentifier;
 
+- (CGSize)autoCalSize;
+
++ (CGSize)maxCellSize;
+
 @end

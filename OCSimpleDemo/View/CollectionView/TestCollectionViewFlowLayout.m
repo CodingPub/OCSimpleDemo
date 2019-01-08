@@ -83,4 +83,8 @@
     return CGRectMake(x, y, width, height);
 }
 
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+    return YES;
+}
+
 @end

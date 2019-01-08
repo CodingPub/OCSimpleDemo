@@ -33,9 +33,18 @@
     return self;
 }
 
-
 + (NSString *)reuseIdentifier {
     return @"TestSimpleCollectionViewCell";
+}
+
+- (CGSize)autoCalSize {
+    CGSize max = CGSizeMake(50, 300);
+    CGSize size = [self.contentView systemLayoutSizeFittingSize:max];
+    return size;
+}
+
++ (CGSize)maxCellSize {
+    return CGSizeMake(50, 300);
 }
 
 @end
