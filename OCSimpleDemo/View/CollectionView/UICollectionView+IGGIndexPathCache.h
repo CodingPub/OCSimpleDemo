@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface IGGIndexPathSizeCache : NSObject
 
 // Enable automatically if you're using index path driven height cache
@@ -26,6 +27,7 @@
 /// Height cache by index path. Generally, you don't need to use it directly.
 @property (nonatomic, strong, readonly) IGGIndexPathSizeCache *igg_indexPathSizeCache;
 @end
+
 
 @interface UICollectionView (IGGIndexPathSizeCacheInvalidation)
 /// Call this method when you want to reload data but don't want to invalidate

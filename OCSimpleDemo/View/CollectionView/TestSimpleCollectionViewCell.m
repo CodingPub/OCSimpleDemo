@@ -9,17 +9,17 @@
 #import "TestSimpleCollectionViewCell.h"
 #import <Masonry/Masonry.h>
 
+
 @implementation TestSimpleCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.width.equalTo(@(50));
         }];
-        
+
         UIView *view = [[UIView alloc] init];
         view.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:view];
@@ -27,23 +27,26 @@
             make.edges.mas_equalTo(UIEdgeInsetsMake(5, 5, 5, 5));
             make.height.equalTo(@(60));
         }];
-        
+
         self.contentView.backgroundColor = [UIColor orangeColor];
     }
     return self;
 }
 
-+ (NSString *)reuseIdentifier {
++ (NSString *)reuseIdentifier
+{
     return @"TestSimpleCollectionViewCell";
 }
 
-- (CGSize)autoCalSize {
+- (CGSize)autoCalSize
+{
     CGSize max = CGSizeMake(50, 300);
     CGSize size = [self.contentView systemLayoutSizeFittingSize:max];
     return size;
 }
 
-+ (CGSize)maxCellSize {
++ (CGSize)maxCellSize
+{
     return CGSizeMake(50, 300);
 }
 

@@ -14,22 +14,25 @@
 #import <Masonry/Masonry.h>
 #import "UICollectionView+IGGAutolayoutCell.h"
 
+
 @interface TestCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
+
 @implementation TestCollectionViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
+
     TestCollectionViewFlowLayout *layout = [[TestCollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     layout.sectionBackgroundContainsHeaderView = YES;
-    
+
     // 自动计算高度会导致 header 位置不对
     // layout.estimatedItemSize = CGSizeMake(50, 50);
 
@@ -38,58 +41,82 @@
     collectionView.delegate = self;
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
-    
+
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
+
     // Register cell classes
     [self.collectionView registerClass:[TestSimpleCollectionViewCell class] forCellWithReuseIdentifier:TestSimpleCollectionViewCell.reuseIdentifier];
-    [self.collectionView registerClass:SimpleHeaderCollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:SimpleHeaderCollectionReusableView.reuseIdentifier];
-    [self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView"];
-
+    [self.collectionView registerClass:SimpleHeaderCollectionReusableView.class
+            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                   withReuseIdentifier:SimpleHeaderCollectionReusableView.reuseIdentifier];
+    [self.collectionView registerClass:UICollectionReusableView.class
+            forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                   withReuseIdentifier:@"UICollectionReusableView"];
 }
 
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 3;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return 30;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TestSimpleCollectionViewCell.reuseIdentifier forIndexPath:indexPath];
-    
+
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [collectionView igg_heightForCellWithIdentifier:TestSimpleCollectionViewCell.reuseIdentifier indexPath:indexPath maxSize:TestSimpleCollectionViewCell.maxCellSize configuration:^(TestSimpleCollectionViewCell *cell) {
-        
-    }];
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [collectionView igg_heightForCellWithIdentifier:TestSimpleCollectionViewCell.reuseIdentifier
+                                                 indexPath:indexPath
+                                                   maxSize:TestSimpleCollectionViewCell.maxCellSize
+                                             configuration:^(TestSimpleCollectionViewCell *cell){
+
+                                             }];
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
+{
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        SimpleHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:SimpleHeaderCollectionReusableView.reuseIdentifier forIndexPath:indexPath];
+        SimpleHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                                        withReuseIdentifier:SimpleHeaderCollectionReusableView.reuseIdentifier
+                                                                                               forIndexPath:indexPath];
         header.title = @"标题";
         return header;
     } else {
-        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+        UICollectionReusableView *footer =
+            [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
         return footer;
     }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                             layout:(UICollectionViewLayout *)collectionViewLayout
+    referenceSizeForHeaderInSection:(NSInteger)section
+{
     return CGSizeMake(300, 40);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                             layout:(UICollectionViewLayout *)collectionViewLayout
+    referenceSizeForFooterInSection:(NSInteger)section
+{
     return CGSizeMake(300, 20);
 }
 

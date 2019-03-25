@@ -12,8 +12,11 @@
 /**
  自动计算 CollectionViewCell Size
  */
-@interface UICollectionView(IGGAutolayoutCell)
+@interface UICollectionView (IGGAutolayoutCell)
 
-- (CGSize)igg_heightForCellWithIdentifier:(NSString *)identifier indexPath:(NSIndexPath *)indexPath maxSize:(CGSize)maxSize configuration:(void (^)(id cell))configuration;
+- (CGSize)igg_heightForCellWithIdentifier:(NSString *)identifier
+                                indexPath:(NSIndexPath *)indexPath
+                                  maxSize:(CGSize)maxSize
+                            configuration:(void (^)(id cell))configuration;
 
 @end

@@ -11,21 +11,24 @@
 
 typedef NSMutableArray<NSMutableArray<NSValue *> *> FDIndexPathHeightsBySection;
 
-static  NSValue * s_igg_empty_size = nil;
+static NSValue *s_igg_empty_size = nil;
+
 
 @interface IGGIndexPathSizeCache ()
 @property (nonatomic, strong) FDIndexPathHeightsBySection *heightsBySectionForPortrait;
 @property (nonatomic, strong) FDIndexPathHeightsBySection *heightsBySectionForLandscape;
 @end
 
+
 @implementation IGGIndexPathSizeCache
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
     if (self) {
         _heightsBySectionForPortrait = [NSMutableArray array];
         _heightsBySectionForLandscape = [NSMutableArray array];
-        
+
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             s_igg_empty_size = [NSValue valueWithCGSize:CGSizeMake(-1, -1)];
@@ -34,48 +37,56 @@ static  NSValue * s_igg_empty_size = nil;
     return self;
 }
 
-- (FDIndexPathHeightsBySection *)heightsBySectionForCurrentOrientation {
-    return UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) ? self.heightsBySectionForPortrait: self.heightsBySectionForLandscape;
+- (FDIndexPathHeightsBySection *)heightsBySectionForCurrentOrientation
+{
+    return UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) ? self.heightsBySectionForPortrait : self.heightsBySectionForLandscape;
 }
 
-- (void)enumerateAllOrientationsUsingBlock:(void (^)(FDIndexPathHeightsBySection *heightsBySection))block {
+- (void)enumerateAllOrientationsUsingBlock:(void (^)(FDIndexPathHeightsBySection *heightsBySection))block
+{
     block(self.heightsBySectionForPortrait);
     block(self.heightsBySectionForLandscape);
 }
 
-- (BOOL)existsSizeAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)existsSizeAtIndexPath:(NSIndexPath *)indexPath
+{
     [self buildCachesAtIndexPathsIfNeeded:@[indexPath]];
     NSValue *number = self.heightsBySectionForCurrentOrientation[indexPath.section][indexPath.row];
-    
+
     return number != s_igg_empty_size;
 }
 
-- (void)cacheSize:(CGSize)height byIndexPath:(NSIndexPath *)indexPath {
+- (void)cacheSize:(CGSize)height byIndexPath:(NSIndexPath *)indexPath
+{
     self.automaticallyInvalidateEnabled = YES;
     [self buildCachesAtIndexPathsIfNeeded:@[indexPath]];
     self.heightsBySectionForCurrentOrientation[indexPath.section][indexPath.row] = [NSValue valueWithCGSize:height];
 }
 
-- (CGSize)heightForIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)heightForIndexPath:(NSIndexPath *)indexPath
+{
     [self buildCachesAtIndexPathsIfNeeded:@[indexPath]];
     NSValue *number = self.heightsBySectionForCurrentOrientation[indexPath.section][indexPath.row];
     return number.CGSizeValue;
 }
 
-- (void)invalidateSizeAtIndexPath:(NSIndexPath *)indexPath {
+- (void)invalidateSizeAtIndexPath:(NSIndexPath *)indexPath
+{
     [self buildCachesAtIndexPathsIfNeeded:@[indexPath]];
     [self enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
         heightsBySection[indexPath.section][indexPath.row] = @-1;
     }];
 }
 
-- (void)invalidateAllHeightCache {
+- (void)invalidateAllHeightCache
+{
     [self enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
         [heightsBySection removeAllObjects];
     }];
 }
 
-- (void)buildCachesAtIndexPathsIfNeeded:(NSArray *)indexPaths {
+- (void)buildCachesAtIndexPathsIfNeeded:(NSArray *)indexPaths
+{
     // Build every section array or row array which is smaller than given index path.
     [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
         [self buildSectionsIfNeeded:indexPath.section];
@@ -83,7 +94,8 @@ static  NSValue * s_igg_empty_size = nil;
     }];
 }
 
-- (void)buildSectionsIfNeeded:(NSInteger)targetSection {
+- (void)buildSectionsIfNeeded:(NSInteger)targetSection
+{
     [self enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
         for (NSInteger section = 0; section <= targetSection; ++section) {
             if (section >= heightsBySection.count) {
@@ -93,7 +105,8 @@ static  NSValue * s_igg_empty_size = nil;
     }];
 }
 
-- (void)buildRowsIfNeeded:(NSInteger)targetRow inExistSection:(NSInteger)section {
+- (void)buildRowsIfNeeded:(NSInteger)targetRow inExistSection:(NSInteger)section
+{
     [self enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
         NSMutableArray<NSValue *> *heightsByRow = heightsBySection[section];
         for (NSInteger row = 0; row <= targetRow; ++row) {
@@ -106,9 +119,11 @@ static  NSValue * s_igg_empty_size = nil;
 
 @end
 
+
 @implementation UICollectionView (IGGIndexPathSizeCache)
 
-- (IGGIndexPathSizeCache *)igg_indexPathSizeCache {
+- (IGGIndexPathSizeCache *)igg_indexPathSizeCache
+{
     IGGIndexPathSizeCache *cache = objc_getAssociatedObject(self, _cmd);
     if (!cache) {
         cache = [IGGIndexPathSizeCache new];
@@ -122,31 +137,38 @@ static  NSValue * s_igg_empty_size = nil;
 // We just forward primary call, in crash report, top most method in stack maybe FD's,
 // but it's really not our bug, you should check whether your table view's data source and
 // displaying cells are not matched when reloading.
-static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (^callout)(void)) {
+static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (^callout)(void))
+{
     callout();
 }
-#define FDPrimaryCall(...) do {__FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(^{__VA_ARGS__});} while(0)
+#define FDPrimaryCall(...)                                               \
+    do {                                                                 \
+        __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(^{ \
+            __VA_ARGS__});                                               \
+    } while (0)
+
 
 @implementation UICollectionView (IGGIndexPathSizeCacheInvalidation)
 
-- (void)igg_reloadDataWithoutInvalidateIndexPathHeightCache {
+- (void)igg_reloadDataWithoutInvalidateIndexPathHeightCache
+{
     FDPrimaryCall([self igg_reloadData];);
 }
 
-+ (void)load {
++ (void)load
+{
     // All methods that trigger height cache's invalidation
-    SEL selectors[] = {
-        @selector(reloadData),
-        @selector(insertSections:withRowAnimation:),
-        @selector(deleteSections:withRowAnimation:),
-        @selector(reloadSections:withRowAnimation:),
-        @selector(moveSection:toSection:),
-        @selector(insertRowsAtIndexPaths:withRowAnimation:),
-        @selector(deleteRowsAtIndexPaths:withRowAnimation:),
-        @selector(reloadRowsAtIndexPaths:withRowAnimation:),
-        @selector(moveRowAtIndexPath:toIndexPath:)
-    };
-    
+    SEL selectors[]
+        = { @selector(reloadData),
+            @selector(insertSections:withRowAnimation:),
+            @selector(deleteSections:withRowAnimation:),
+            @selector(reloadSections:withRowAnimation:),
+            @selector(moveSection:toSection:),
+            @selector(insertRowsAtIndexPaths:withRowAnimation:),
+            @selector(deleteRowsAtIndexPaths:withRowAnimation:),
+            @selector(reloadRowsAtIndexPaths:withRowAnimation:),
+            @selector(moveRowAtIndexPath:toIndexPath:) };
+
     for (NSUInteger index = 0; index < sizeof(selectors) / sizeof(SEL); ++index) {
         SEL originalSelector = selectors[index];
         SEL swizzledSelector = NSSelectorFromString([@"igg_" stringByAppendingString:NSStringFromSelector(originalSelector)]);
@@ -156,7 +178,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     }
 }
 
-- (void)igg_reloadData {
+- (void)igg_reloadData
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
             [heightsBySection removeAllObjects];
@@ -165,7 +188,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_reloadData];);
 }
 
-- (void)igg_insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [sections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL *stop) {
             [self.igg_indexPathSizeCache buildSectionsIfNeeded:section];
@@ -177,7 +201,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_insertSections:sections withRowAnimation:animation];);
 }
 
-- (void)igg_deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [sections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL *stop) {
             [self.igg_indexPathSizeCache buildSectionsIfNeeded:section];
@@ -189,20 +214,22 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_deleteSections:sections withRowAnimation:animation];);
 }
 
-- (void)igg_reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
-        [sections enumerateIndexesUsingBlock: ^(NSUInteger section, BOOL *stop) {
+        [sections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL *stop) {
             [self.igg_indexPathSizeCache buildSectionsIfNeeded:section];
             [self.igg_indexPathSizeCache enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
                 [heightsBySection[section] removeAllObjects];
             }];
-            
+
         }];
     }
     FDPrimaryCall([self igg_reloadSections:sections withRowAnimation:animation];);
 }
 
-- (void)igg_moveSection:(NSInteger)section toSection:(NSInteger)newSection {
+- (void)igg_moveSection:(NSInteger)section toSection:(NSInteger)newSection
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache buildSectionsIfNeeded:section];
         [self.igg_indexPathSizeCache buildSectionsIfNeeded:newSection];
@@ -213,7 +240,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_moveSection:section toSection:newSection];);
 }
 
-- (void)igg_insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache buildCachesAtIndexPathsIfNeeded:indexPaths];
         [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
@@ -225,10 +253,11 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];);
 }
 
-- (void)igg_deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache buildCachesAtIndexPathsIfNeeded:indexPaths];
-        
+
         NSMutableDictionary<NSNumber *, NSMutableIndexSet *> *mutableIndexSetsToRemove = [NSMutableDictionary dictionary];
         [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
             NSMutableIndexSet *mutableIndexSet = mutableIndexSetsToRemove[@(indexPath.section)];
@@ -238,7 +267,7 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
             }
             [mutableIndexSet addIndex:indexPath.row];
         }];
-        
+
         [mutableIndexSetsToRemove enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSIndexSet *indexSet, BOOL *stop) {
             [self.igg_indexPathSizeCache enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
                 [heightsBySection[key.integerValue] removeObjectsAtIndexes:indexSet];
@@ -248,7 +277,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];);
 }
 
-- (void)igg_reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)igg_reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache buildCachesAtIndexPathsIfNeeded:indexPaths];
         [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
@@ -260,7 +290,8 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
     FDPrimaryCall([self igg_reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];);
 }
 
-- (void)igg_moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+- (void)igg_moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
     if (self.igg_indexPathSizeCache.automaticallyInvalidateEnabled) {
         [self.igg_indexPathSizeCache buildCachesAtIndexPathsIfNeeded:@[sourceIndexPath, destinationIndexPath]];
         [self.igg_indexPathSizeCache enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {

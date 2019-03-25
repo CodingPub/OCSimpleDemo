@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^TestBlock)(void);
+typedef void (^TestBlock)(void);
+
 
 @interface TestBlockManager : NSObject
 

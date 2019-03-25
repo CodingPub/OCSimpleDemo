@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface SimpleHeaderCollectionReusableView : UICollectionReusableView
 
 @property (nonatomic, copy) NSString *title;

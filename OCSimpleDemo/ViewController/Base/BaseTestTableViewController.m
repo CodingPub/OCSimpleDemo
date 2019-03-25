@@ -8,10 +8,11 @@
 
 #import "BaseTestTableViewController.h"
 
-#define kSectionTitleKey    @"SectionTitle"
-#define kCellTitleArrayKey      @"CellTitleArray"
-#define kCellTitleKey   @"Title"
+#define kSectionTitleKey @"SectionTitle"
+#define kCellTitleArrayKey @"CellTitleArray"
+#define kCellTitleKey @"Title"
 #define kCellOperationKey @"Operation"
+
 
 @interface BaseTestTableViewController ()
 
@@ -19,26 +20,27 @@
 
 @end
 
+
 @implementation BaseTestTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DefaultCellIDentifier"];
     self.sections = @[].mutableCopy;
 }
 
-- (void)addSection:(NSString *)title {
-    [self.sections addObject:@{kSectionTitleKey: title ?: @"",
-                               kCellTitleArrayKey: @[].mutableCopy}];
-    
+- (void)addSection:(NSString *)title
+{
+    [self.sections addObject:@{ kSectionTitleKey: title ?: @"", kCellTitleArrayKey: @[].mutableCopy }];
 }
 
-- (void)section:(NSUInteger)section addCell:(NSString *)title action:(void (^)(void))action {
+- (void)section:(NSUInteger)section addCell:(NSString *)title action:(void (^)(void))action
+{
     NSMutableArray *array = self.sections[section][kCellTitleArrayKey];
-    
-    [array addObject:@{kCellTitleKey:title, kCellOperationKey:action}];
+
+    [array addObject:@{kCellTitleKey: title, kCellOperationKey: action}];
 }
 
 #pragma mark - Table view data source
@@ -69,7 +71,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DefaultCellIDentifier" forIndexPath:indexPath];
-    
+
     NSDictionary *dict = [self.sections objectAtIndex:indexPath.section];
     NSArray *titles = dict[kCellTitleArrayKey];
     if ([titles isKindOfClass:[NSArray class]]) {
@@ -78,14 +80,14 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%zd-%zd %@", indexPath.section, indexPath.row, cellDict[kCellTitleKey]];
         }
     }
-    
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     NSDictionary *dict = [self.sections objectAtIndex:indexPath.section];
     NSArray *titles = dict[kCellTitleArrayKey];
     if ([titles isKindOfClass:[NSArray class]]) {

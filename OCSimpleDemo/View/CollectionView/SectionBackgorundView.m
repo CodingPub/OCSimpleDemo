@@ -8,6 +8,7 @@
 
 #import "SectionBackgorundView.h"
 
+
 @implementation SectionBackgorundView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -21,7 +22,8 @@
     return self;
 }
 
-+ (NSString *)reuseIdentifier {
++ (NSString *)reuseIdentifier
+{
     return @"SimpleHeaderCollectionReusableView";
 }
 
