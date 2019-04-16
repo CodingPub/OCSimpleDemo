@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D0D090F62264595600F81B9B /* OCLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D0D090F72264595600F81B9B /* Build configuration list for PBXAggregateTarget "OCLint" */;
+			buildPhases = (
+				D0D090FA2264595900F81B9B /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = OCLint;
+			productName = OCLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0842FB77461417D0E0DD32CE /* libPods-OCSimpleDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D661C1142D709DC2F7F2956A /* libPods-OCSimpleDemo.a */; };
 		1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3A721E38CD300582357 /* TestCollectionViewController.m */; };
@@ -223,6 +237,9 @@
 					17781A0821253887009289FE = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
+					D0D090F62264595600F81B9B = {
+						CreatedOnToolsVersion = 10.2;
+					};
 				};
 			};
 			buildConfigurationList = 17781A0421253887009289FE /* Build configuration list for PBXProject "OCSimpleDemo" */;
@@ -239,6 +256,7 @@
 			projectRoot = "";
 			targets = (
 				17781A0821253887009289FE /* OCSimpleDemo */,
+				D0D090F62264595600F81B9B /* OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +275,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		D0D090FA2264595900F81B9B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source ~/.bash_profile\nwork_dir=$( cd ${SRCROOT}/ && pwd )\nworkspace_path=${work_dir}/OCSimpleDemo.xcworkspace\nscheme_name=OCSimpleDemo\necho \"workspace_path = ${workspace_path}\"\n\nxcodebuild clean -workspace ${workspace_path} -scheme ${scheme_name} -UseModernBuildSystem=NO\nxcodebuild -workspace ${workspace_path} -scheme ${scheme_name} -sdk iphonesimulator COMPILER_INDEX_STORE_ENABLE=NO -UseModernBuildSystem=NO | xcpretty -r json-compilation-database --output compile_commands.json\noclint-json-compilation-database -v \\\n-e Pods \\\n-- \\\n-max-priority-1 100000 \\\n-max-priority-2 100000 \\\n-max-priority-3 100000 \\\n-report-type html -o ${work_dir}/oclint.html \\\n-disable-rule ShortVariableName\n\n";
+		};
 		D0FE42DA99FD9476FB56DF1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +471,7 @@
 			baseConfigurationReference = F6D214808595284642DB5A9D /* Pods-OCSimpleDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TEXZU2MESD;
 				INFOPLIST_FILE = OCSimpleDemo/Info.plist;
@@ -446,6 +482,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.felink.OCSimpleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -455,6 +492,7 @@
 			baseConfigurationReference = 921D47FE2BBDAAC5C84C6892 /* Pods-OCSimpleDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TEXZU2MESD;
 				INFOPLIST_FILE = OCSimpleDemo/Info.plist;
@@ -465,7 +503,24 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.felink.OCSimpleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D0D090F82264595600F81B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0D090F92264595600F81B9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -486,6 +541,15 @@
 			buildConfigurations = (
 				17781A2021253889009289FE /* Debug */,
 				17781A2121253889009289FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0D090F72264595600F81B9B /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0D090F82264595600F81B9B /* Debug */,
+				D0D090F92264595600F81B9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
