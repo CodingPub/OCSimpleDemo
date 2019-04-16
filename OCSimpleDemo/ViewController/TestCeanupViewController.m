@@ -78,7 +78,7 @@ static void stringCleanUp(__strong NSString **string) {
 }
 
 - (void)simpleTest {
-    NSString *string __attribute__((cleanup(stringCleanUp))) = @"sunnyxx";
+//    NSString *string __attribute__((cleanup(stringCleanUp))) = @"sunnyxx";
 }
 
 - (void)testMacro {
