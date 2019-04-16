@@ -73,9 +73,9 @@ __strong fl_cleanupBlock_t metamacro_concat(fl_exitBlock_, __LINE__) __attribute
 
 // 指定一个cleanup方法，注意入参是所修饰变量的地址，类型要一样
 // 对于指向objc对象的指针(id *)，如果不强制声明__strong默认是__autoreleasing，造成类型不匹配
-static void stringCleanUp(__strong NSString **string) {
-    NSLog(@"%@", *string);
-}
+//static void stringCleanUp(__strong NSString **string) {
+//    NSLog(@"%@", *string);
+//}
 
 - (void)simpleTest {
 //    NSString *string __attribute__((cleanup(stringCleanUp))) = @"sunnyxx";
