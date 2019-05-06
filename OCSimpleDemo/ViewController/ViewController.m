@@ -11,6 +11,7 @@
 #import "TestCeanupViewController.h"
 #import "TestCollectionViewController.h"
 #import "HitTestViewController.h"
+#import "TestManAndFrameViewController.h"
 
 
 @interface ViewController ()
@@ -54,6 +55,15 @@
                TestCollectionViewController *ctrl = [[TestCollectionViewController alloc] init];
                [weakSelf.navigationController pushViewController:ctrl animated:YES];
            }];
+    
+    [self section:section
+          addCell:@"Test Masonry and frame"
+           action:^{
+               TestManAndFrameViewController *ctrl = [[TestManAndFrameViewController alloc] init];
+               [weakSelf.navigationController pushViewController:ctrl animated:YES];
+           }];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,7 +75,7 @@
 
 #if 1
 #warning 快速测试
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
         if (indexPath.section < [self numberOfSectionsInTableView:self.tableView]
             && indexPath.row < [self tableView:self.tableView numberOfRowsInSection:indexPath.section]) {
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];

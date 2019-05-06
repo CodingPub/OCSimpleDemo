@@ -36,6 +36,7 @@
 		17781A262125397F009289FE /* BaseTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A252125397F009289FE /* BaseTestTableViewController.m */; };
 		17781A2921254573009289FE /* TestBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A2821254573009289FE /* TestBlockViewController.m */; };
 		17781A2D21254634009289FE /* TestBlockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A2C21254634009289FE /* TestBlockManager.m */; };
+		17B0F6FE2280770400B03976 /* TestManAndFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B0F6FD2280770400B03976 /* TestManAndFrameViewController.m */; };
 		17B76FC3225F8C0600930D39 /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B76FC2225F8C0600930D39 /* HitTestView.m */; };
 		17B76FC6225F8C9B00930D39 /* HitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B76FC5225F8C9B00930D39 /* HitTestViewController.m */; };
 		17F4FC4D21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F4FC4C21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m */; };
@@ -70,6 +71,8 @@
 		17781A2821254573009289FE /* TestBlockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBlockViewController.m; sourceTree = "<group>"; };
 		17781A2B21254634009289FE /* TestBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBlockManager.h; sourceTree = "<group>"; };
 		17781A2C21254634009289FE /* TestBlockManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBlockManager.m; sourceTree = "<group>"; };
+		17B0F6FC2280770400B03976 /* TestManAndFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestManAndFrameViewController.h; sourceTree = "<group>"; };
+		17B0F6FD2280770400B03976 /* TestManAndFrameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestManAndFrameViewController.m; sourceTree = "<group>"; };
 		17B76FC1225F8C0600930D39 /* HitTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
 		17B76FC2225F8C0600930D39 /* HitTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
 		17B76FC4225F8C9B00930D39 /* HitTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestViewController.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				1762D3A721E38CD300582357 /* TestCollectionViewController.m */,
 				17B76FC4225F8C9B00930D39 /* HitTestViewController.h */,
 				17B76FC5225F8C9B00930D39 /* HitTestViewController.m */,
+				17B0F6FC2280770400B03976 /* TestManAndFrameViewController.h */,
+				17B0F6FD2280770400B03976 /* TestManAndFrameViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */,
 				17B76FC3225F8C0600930D39 /* HitTestView.m in Sources */,
 				1762D3B021E38FA400582357 /* SimpleHeaderCollectionReusableView.m in Sources */,
+				17B0F6FE2280770400B03976 /* TestManAndFrameViewController.m in Sources */,
 				17781A2921254573009289FE /* TestBlockViewController.m in Sources */,
 				17F4FC4D21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m in Sources */,
 				17781A2D21254634009289FE /* TestBlockManager.m in Sources */,
