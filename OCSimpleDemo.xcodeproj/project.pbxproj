@@ -36,6 +36,8 @@
 		17781A262125397F009289FE /* BaseTestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A252125397F009289FE /* BaseTestTableViewController.m */; };
 		17781A2921254573009289FE /* TestBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A2821254573009289FE /* TestBlockViewController.m */; };
 		17781A2D21254634009289FE /* TestBlockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17781A2C21254634009289FE /* TestBlockManager.m */; };
+		17B76FC3225F8C0600930D39 /* HitTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B76FC2225F8C0600930D39 /* HitTestView.m */; };
+		17B76FC6225F8C9B00930D39 /* HitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B76FC5225F8C9B00930D39 /* HitTestViewController.m */; };
 		17F4FC4D21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F4FC4C21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m */; };
 		17F4FC5321E4EDD700718858 /* UICollectionView+IGGIndexPathCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F4FC5221E4EDD700718858 /* UICollectionView+IGGIndexPathCache.m */; };
 		17FDE0F8213E7C3F00FAE5F9 /* TestCeanupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE0F7213E7C3F00FAE5F9 /* TestCeanupViewController.m */; };
@@ -68,6 +70,10 @@
 		17781A2821254573009289FE /* TestBlockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBlockViewController.m; sourceTree = "<group>"; };
 		17781A2B21254634009289FE /* TestBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBlockManager.h; sourceTree = "<group>"; };
 		17781A2C21254634009289FE /* TestBlockManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBlockManager.m; sourceTree = "<group>"; };
+		17B76FC1225F8C0600930D39 /* HitTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestView.h; sourceTree = "<group>"; };
+		17B76FC2225F8C0600930D39 /* HitTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestView.m; sourceTree = "<group>"; };
+		17B76FC4225F8C9B00930D39 /* HitTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestViewController.h; sourceTree = "<group>"; };
+		17B76FC5225F8C9B00930D39 /* HitTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestViewController.m; sourceTree = "<group>"; };
 		17F4FC4B21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+IGGAutolayoutCell.h"; sourceTree = "<group>"; };
 		17F4FC4C21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+IGGAutolayoutCell.m"; sourceTree = "<group>"; };
 		17F4FC5121E4EDD700718858 /* UICollectionView+IGGIndexPathCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+IGGIndexPathCache.h"; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 		1762D3A921E38CF600582357 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17B76FC0225F8BEE00930D39 /* HitTestView */,
 				1762D3AD21E38F6E00582357 /* CollectionView */,
 			);
 			path = View;
@@ -165,6 +172,8 @@
 				17FDE0F7213E7C3F00FAE5F9 /* TestCeanupViewController.m */,
 				1762D3A621E38CD300582357 /* TestCollectionViewController.h */,
 				1762D3A721E38CD300582357 /* TestCollectionViewController.m */,
+				17B76FC4225F8C9B00930D39 /* HitTestViewController.h */,
+				17B76FC5225F8C9B00930D39 /* HitTestViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -185,6 +194,15 @@
 				17781A2C21254634009289FE /* TestBlockManager.m */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		17B76FC0225F8BEE00930D39 /* HitTestView */ = {
+			isa = PBXGroup;
+			children = (
+				17B76FC1225F8C0600930D39 /* HitTestView.h */,
+				17B76FC2225F8C0600930D39 /* HitTestView.m */,
+			);
+			path = HitTestView;
 			sourceTree = "<group>";
 		};
 		87B9634AFEA56FEF660481F7 /* Pods */ = {
@@ -323,8 +341,10 @@
 				1762D3B321E3A7E600582357 /* SectionBackgorundView.m in Sources */,
 				17781A262125397F009289FE /* BaseTestTableViewController.m in Sources */,
 				17F4FC5321E4EDD700718858 /* UICollectionView+IGGIndexPathCache.m in Sources */,
+				17B76FC6225F8C9B00930D39 /* HitTestViewController.m in Sources */,
 				17781A0E21253887009289FE /* AppDelegate.m in Sources */,
 				1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */,
+				17B76FC3225F8C0600930D39 /* HitTestView.m in Sources */,
 				1762D3B021E38FA400582357 /* SimpleHeaderCollectionReusableView.m in Sources */,
 				17781A2921254573009289FE /* TestBlockViewController.m in Sources */,
 				17F4FC4D21E4DDF800718858 /* UICollectionView+IGGAutolayoutCell.m in Sources */,

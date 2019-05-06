@@ -158,16 +158,15 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
 + (void)load
 {
     // All methods that trigger height cache's invalidation
-    SEL selectors[]
-        = { @selector(reloadData),
-            @selector(insertSections:withRowAnimation:),
-            @selector(deleteSections:withRowAnimation:),
-            @selector(reloadSections:withRowAnimation:),
-            @selector(moveSection:toSection:),
-            @selector(insertRowsAtIndexPaths:withRowAnimation:),
-            @selector(deleteRowsAtIndexPaths:withRowAnimation:),
-            @selector(reloadRowsAtIndexPaths:withRowAnimation:),
-            @selector(moveRowAtIndexPath:toIndexPath:) };
+    SEL selectors[] = {@selector(reloadData),
+                       @selector(insertSections:withRowAnimation:),
+                       @selector(deleteSections:withRowAnimation:),
+                       @selector(reloadSections:withRowAnimation:),
+                       @selector(moveSection:toSection:),
+                       @selector(insertRowsAtIndexPaths:withRowAnimation:),
+                       @selector(deleteRowsAtIndexPaths:withRowAnimation:),
+                       @selector(reloadRowsAtIndexPaths:withRowAnimation:),
+                       @selector(moveRowAtIndexPath:toIndexPath:)};
 
     for (NSUInteger index = 0; index < sizeof(selectors) / sizeof(SEL); ++index) {
         SEL originalSelector = selectors[index];
@@ -222,7 +221,6 @@ static void __FD_TEMPLATE_LAYOUT_CELL_PRIMARY_CALL_IF_CRASH_NOT_OUR_BUG__(void (
             [self.igg_indexPathSizeCache enumerateAllOrientationsUsingBlock:^(FDIndexPathHeightsBySection *heightsBySection) {
                 [heightsBySection[section] removeAllObjects];
             }];
-
         }];
     }
     FDPrimaryCall([self igg_reloadSections:sections withRowAnimation:animation];);

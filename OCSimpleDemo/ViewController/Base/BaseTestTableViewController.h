@@ -16,3 +16,11 @@
 - (void)section:(NSUInteger)section addCell:(NSString *)title action:(void (^)(void))action;
 
 @end
+
+
+
+@interface BaseTestTableViewController(Test)
+
+- (void)testCategory;
+
+@end

@@ -77,9 +77,7 @@
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [collectionView igg_heightForCellWithIdentifier:TestSimpleCollectionViewCell.reuseIdentifier
                                                  indexPath:indexPath
@@ -100,8 +98,7 @@
         header.title = @"标题";
         return header;
     } else {
-        UICollectionReusableView *footer =
-            [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
         return footer;
     }
 }

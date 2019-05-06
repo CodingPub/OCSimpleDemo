@@ -45,8 +45,7 @@
             UICollectionViewLayoutAttributes *lastAttrInSection = [self lastItemAttrInSection:attribute.indexPath.section];
 
             // 创建decoration属性
-            UICollectionViewLayoutAttributes *decorationAttributes =
-                [self layoutAttributesForDecorationViewOfKind:SectionBackgorundView.reuseIdentifier atIndexPath:attribute.indexPath];
+            UICollectionViewLayoutAttributes *decorationAttributes = [self layoutAttributesForDecorationViewOfKind:SectionBackgorundView.reuseIdentifier atIndexPath:attribute.indexPath];
             decorationAttributes.frame = [self sectionBackgroundFrame:attribute lastItem:lastAttrInSection];
 
             // 设置zIndex，表示在item的后面
@@ -79,8 +78,7 @@
     CGFloat height = (lastItem.frame.origin.y + lastItem.frame.size.height - y) + self.sectionInset.bottom;
 
     if (self.sectionBackgroundContainsHeaderView) {
-        UICollectionViewLayoutAttributes *headerItem =
-            [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:firstItem.indexPath];
+        UICollectionViewLayoutAttributes *headerItem = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:firstItem.indexPath];
         y -= headerItem.frame.size.height;
         height += headerItem.frame.size.height;
     }

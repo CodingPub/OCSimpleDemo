@@ -10,39 +10,21 @@
 #import "TestBlockViewController.h"
 #import "TestCeanupViewController.h"
 #import "TestCollectionViewController.h"
+#import "HitTestViewController.h"
 
 
 @interface ViewController ()
 {
 }
 
-@property (nonatomic, assign, getter=isOn) BOOL on;
-
 @end
 
 
 @implementation ViewController
 
-@synthesize on = _on;
-
-- (BOOL)isOn
-{
-    return _on;
-}
-
-- (void)setOn:(BOOL)on
-{
-    _on = on;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.on = YES;
-    NSLog(@"%@", @(self.isOn));
-    NSLog(@"%@", @(self.on));
-    NSLog(@"%@", @([self isOn]));
 
     typeof(self) __weak weakSelf = self;
     NSUInteger section = 0;
@@ -57,6 +39,13 @@
           addCell:@"Test Ceanup"
            action:^{
                TestCeanupViewController *ctrl = [[TestCeanupViewController alloc] init];
+               [weakSelf.navigationController pushViewController:ctrl animated:YES];
+           }];
+    
+    [self section:section
+          addCell:@"HitTest"
+           action:^{
+               HitTestViewController *ctrl = [[HitTestViewController alloc] init];
                [weakSelf.navigationController pushViewController:ctrl animated:YES];
            }];
     [self section:section

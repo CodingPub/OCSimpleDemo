@@ -29,11 +29,13 @@
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DefaultCellIDentifier"];
     self.sections = @[].mutableCopy;
+    
+    [self testCategory];
 }
 
 - (void)addSection:(NSString *)title
 {
-    [self.sections addObject:@{ kSectionTitleKey: title ?: @"", kCellTitleArrayKey: @[].mutableCopy }];
+    [self.sections addObject:@{kSectionTitleKey: title ?: @"", kCellTitleArrayKey: @[].mutableCopy}];
 }
 
 - (void)section:(NSUInteger)section addCell:(NSString *)title action:(void (^)(void))action
@@ -97,6 +99,15 @@
             block();
         }
     }
+}
+
+@end
+
+
+@implementation BaseTestTableViewController(Test)
+
+- (void)testCategory {
+    NSLog(@"BaseTestTableViewController testCategory");
 }
 
 @end
