@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		0842FB77461417D0E0DD32CE /* libPods-OCSimpleDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D661C1142D709DC2F7F2956A /* libPods-OCSimpleDemo.a */; };
+		17551068229D611900EA2335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17551067229D611900EA2335 /* GoogleService-Info.plist */; };
 		1762D3A821E38CD300582357 /* TestCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3A721E38CD300582357 /* TestCollectionViewController.m */; };
 		1762D3AC21E38D1100582357 /* TestSimpleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3AB21E38D1100582357 /* TestSimpleCollectionViewCell.m */; };
 		1762D3B021E38FA400582357 /* SimpleHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1762D3AF21E38FA400582357 /* SimpleHeaderCollectionReusableView.m */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17551067229D611900EA2335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1762D3A621E38CD300582357 /* TestCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewController.h; sourceTree = "<group>"; };
 		1762D3A721E38CD300582357 /* TestCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewController.m; sourceTree = "<group>"; };
 		1762D3AA21E38D1100582357 /* TestSimpleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSimpleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				17781A1721253889009289FE /* LaunchScreen.storyboard */,
 				17781A1A21253889009289FE /* Info.plist */,
 				17781A1B21253889009289FE /* main.m */,
+				17551067229D611900EA2335 /* GoogleService-Info.plist */,
 			);
 			path = OCSimpleDemo;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17781A1921253889009289FE /* LaunchScreen.storyboard in Resources */,
+				17551068229D611900EA2335 /* GoogleService-Info.plist in Resources */,
 				17781A1621253889009289FE /* Assets.xcassets in Resources */,
 				17781A1421253887009289FE /* Main.storyboard in Resources */,
 			);

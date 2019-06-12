@@ -73,7 +73,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
 
-#if 1
+#if 0
 #warning 快速测试
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
         if (indexPath.section < [self numberOfSectionsInTableView:self.tableView]

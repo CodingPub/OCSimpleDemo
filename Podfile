@@ -12,4 +12,6 @@ target 'OCSimpleDemo' do
   # pod 'ReactiveObjC'
   
   pod 'Masonry'
+  
+  pod 'Firebase/Core'
 end
