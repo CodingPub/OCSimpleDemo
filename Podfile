@@ -13,5 +13,4 @@ target 'OCSimpleDemo' do
   
   pod 'Masonry'
   
-  pod 'Firebase/Core'
 end

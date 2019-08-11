@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Firebase/Firebase.h>
-#import <FirebaseAnalytics/FirebaseAnalytics.h>
 
 @interface AppDelegate ()
 
@@ -21,10 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [FIRApp configure];
-    
-    [FIRAnalytics logEventWithName:@"tk" parameters:@{@"k1": @"v1"}];
-    
+
     return YES;
 }
 
