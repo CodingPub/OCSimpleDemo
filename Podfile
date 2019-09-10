@@ -1,5 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # source 'http://git.felink.com:3000/felink-iOS/FLSpecs'
+source 'http://git.dev8.com/dev8-iOS/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 inhibit_all_warnings!
 
@@ -12,5 +14,5 @@ target 'OCSimpleDemo' do
   # pod 'ReactiveObjC'
   
   pod 'Masonry'
-  
+  pod 'WGMasonryExtends', '~> 1.0'
 end
