@@ -18,8 +18,6 @@
 {
 }
 
-@property (nonatomic, strong) dispatch_queue_t queue;
-
 @end
 
 
@@ -29,23 +27,6 @@
 {
     [super viewDidLoad];
     
-    self.queue = dispatch_queue_create("com.codingpub.test", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(self.queue, ^{
-        NSLog(@"1");
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.queue, ^{
-        NSLog(@"time out");
-    });
-    
-    dispatch_async(self.queue, ^{
-        NSLog(@"2");
-    });
-
-    dispatch_async(self.queue, ^{
-        NSLog(@"2");
-    });
-
     typeof(self) __weak weakSelf = self;
     NSUInteger section = 0;
     [self addSection:@"测试"];
