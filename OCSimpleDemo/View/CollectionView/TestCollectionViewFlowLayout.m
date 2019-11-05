@@ -12,14 +12,6 @@
 
 @implementation TestCollectionViewFlowLayout
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)prepareLayout
 {
     [super prepareLayout];

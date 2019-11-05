@@ -97,10 +97,10 @@
                                                                                                forIndexPath:indexPath];
         header.title = @"标题";
         return header;
-    } else {
-        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
-        return footer;
     }
+    
+    UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
+    return footer;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

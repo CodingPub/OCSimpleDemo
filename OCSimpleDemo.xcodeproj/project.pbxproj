@@ -317,7 +317,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "source ~/.bash_profile\nwork_dir=$( cd ${SRCROOT}/ && pwd )\ncd ${work_dir} \nworkspace_path=${work_dir}/OCSimpleDemo.xcworkspace\nscheme_name=OCSimpleDemo\necho \"workspace_path = ${workspace_path}\"\n\nxcodebuild clean -workspace ${workspace_path} -scheme ${scheme_name} -sdk iphonesimulator\nxcodebuild -workspace ${workspace_path} -scheme ${scheme_name} -sdk iphonesimulator COMPILER_INDEX_STORE_ENABLE=NO -UseModernBuildSystem=NO | xcpretty -r json-compilation-database --output compile_commands.json\noclint-json-compilation-database -v \\\n-e Pods \\\n-- \\\n-report-type xcode\n";
+			shellScript = "source ~/.bash_profile\nwork_dir=$( cd ${SRCROOT}/ && pwd )\ncd ${work_dir} \nworkspace_path=${work_dir}/OCSimpleDemo.xcworkspace\nscheme_name=OCSimpleDemo\necho \"workspace_path = ${workspace_path}\"\n\nxcodebuild clean -workspace ${workspace_path} -scheme ${scheme_name} -sdk iphonesimulator\n \nxcodebuild -workspace ${workspace_path} -scheme ${scheme_name} -sdk iphonesimulator COMPILER_INDEX_STORE_ENABLE=NO -UseModernBuildSystem=NO | xcpretty -r json-compilation-database --output compile_commands.json\n\noclint-json-compilation-database -v \\\n-e Pods \\\n-- \\\n-report-type xcode\n\nexit 0\n";
 		};
 		D0FE42DA99FD9476FB56DF1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
